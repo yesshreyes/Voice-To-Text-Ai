@@ -1,6 +1,7 @@
 package com.example.voicetotextai
 
-import android.util.Log
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,17 +16,18 @@ class ChatViewModel:ViewModel() {
     }
 
     val generativeModel:GenerativeModel = GenerativeModel(
-        modelName = "gemini-pro",
+        modelName = "gemini-1.5-flash",
         apiKey = Constants.apiKey
     )
 
+    @RequiresApi(Build.VERSION_CODES.VANILLA_ICE_CREAM)
     fun sendMessage(question:String){
         viewModelScope.launch {
             try {
                 val chat = generativeModel.startChat(
                     history = messageList.map {
                         content(it.role){text(it.message)}
-                    }
+                    }.toList()
                 )
 
                 messageList.add(MessageModel(question,"user"))
