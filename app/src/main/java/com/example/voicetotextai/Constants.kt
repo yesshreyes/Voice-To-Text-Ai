@@ -1,6 +1,6 @@
 package com.example.voicetotextai
 
-object Constants {
 
-    val apiKey = "AIzaSyCfXajbTwI6GEoJVmCj5aZAR8rwEf7E8d8"
+object Constants {
+    val apiKey ="AIzaSyCvKM4F5auBfwobrpoNfyPlGbGN2HCsh_c"
 }
